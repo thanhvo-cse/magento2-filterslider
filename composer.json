@@ -1,0 +1,24 @@
+{
+    "name": "thanhvo-cse/magento2-filterslider",
+    "description": "Display filters as sliders",
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "email": "thanhvo.cse@gmail.com",
+            "name": "Thanh Vo"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "ThanhVo\\FilterSlider\\": ""
+        }
+    }
+}

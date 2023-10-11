@@ -1,0 +1,26 @@
+#layered-filter-block .filter-content.thanhvo {
+    position: initial!important;
+}
+.thanhvo_overlay{
+    background-color: #FFFFFF;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 555;
+    display:none;
+}
+.thanhvo_overlay img {
+    top: 30%;left: 45%;display: block;position: absolute;
+}
+.sidebar.sidebar-main .filter-options .filter-options-title{
+    font-family: Arimo;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 30px */
+    text-transform: capitalize;
+}

@@ -1,0 +1,83 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php
+/** @var \Magento\LayeredNavigation\Block\Navigation\FilterRenderer $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Framework\Locale\LocaleFormatter $localeFormatter */
+/** @var \Magento\LayeredNavigation\ViewModel\Layer\Filter $viewModel */
+$viewModel = $block->getData('product_layer_view_model');
+?>
+
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <li class="item">
+            <?php
+                /** @var Magento\Catalog\Model\Layer\Filter\FilterInterface $filter */
+                $filter = $filterItem->getFilter();
+                $attributeModel = $filter->getData('attribute_model');
+                $inputName = $filter->getRequestVar();
+                $getParamValue = $block->getRequest()->getParam($inputName);
+            ?>
+            <?php if ($attributeModel && $attributeModel->getBackendType() == 'decimal' && $attributeModel->getFilterAsSlider()): ?>
+                <?php
+                    list($min, $max) = $filter->getMinMax();
+                    list($from, $to) = $getParamValue ? explode('-', $getParamValue) : [$min, $max];
+                ?>
+                <div id="thanhvo_number_attribute_<?= $attributeModel->getAttributeCode() ?>">
+                    <div class="thanhvo_number_slider"></div>
+                    <div class="thanhvo_number_text"></div>
+                </div>
+                <script type="text/x-magento-init">
+                    {
+                        "#thanhvo_number_attribute_<?= $attributeModel->getAttributeCode() ?>": {
+                            "ThanhVo_FilterSlider/js/number/slider": {
+                                "attributeCode": "<?= $attributeModel->getAttributeCode() ?>",
+                                "selectedFrom": <?= $from ?>,
+                                "selectedTo": <?= $to ?>,
+                                "priceMin": <?= $min ?>,
+                                "priceMax": <?= $max ?>,
+                                "priceFormat": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Tax\Helper\Data')->getPriceFormat($block->getStore()); ?>,
+                                "ajaxUrl": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($filterItem->getUrl()) ?>
+                            }
+                        }
+                    }
+                </script>
+                <?php break; ?>
+            <?php else: ?>
+                <?php if ($filterItem->getCount() > 0): ?>
+                    <a
+                        href="<?= $escaper->escapeUrl($filterItem->getUrl()) ?>"
+                        rel="nofollow"
+                    ><?= /* @noEscape */ $filterItem->getLabel() ?><?php
+                        if ($viewModel->shouldDisplayProductCountOnLayer()): ?><span
+                            class="count">
+                            <?= /* @noEscape */ $localeFormatter->formatNumber((int) $filterItem->getCount()) ?><span
+                                class="filter-count-label"><?php
+                            if ($filterItem->getCount() == 1): ?>
+                                <?= $escaper->escapeHtml(__('item')) ?><?php
+                            else:
+                                ?><?= $escaper->escapeHtml(__('item')) ?><?php
+                            endif;?></span></span>
+                        <?php endif; ?></a>
+                <?php else: ?>
+                    <?= /* @noEscape */ $filterItem->getLabel() ?><?php
+                    if ($viewModel->shouldDisplayProductCountOnLayer()): ?><span
+                        class="count">
+                        <?= /* @noEscape */ $localeFormatter->formatNumber((int) $filterItem->getCount()) ?><span
+                            class="filter-count-label"><?php
+                        if ($filterItem->getCount() == 1): ?>
+                            <?= $escaper->escapeHtml(__('items')) ?><?php
+                        else:
+                            ?><?= $escaper->escapeHtml(__('items')) ?><?php
+                        endif;?></span></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>
