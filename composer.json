@@ -1,10 +1,10 @@
 {
     "name": "thanhvo-cse/magento2-filterslider",
-    "description": "Magento extension to display filters as sliders",
+    "description": "Magento extension to display catalog layered navigation as sliders",
     "type": "magento2-module",
     "license": "MIT",
     "keywords": [
-        "filter", "search", "slider", "magento"
+        "layerd navigation", "catalog", "filter", "search", "slider", "magento"
     ],
     "authors": [
         {
