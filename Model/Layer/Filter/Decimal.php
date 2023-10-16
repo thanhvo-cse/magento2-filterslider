@@ -5,12 +5,15 @@ use Magento\CatalogSearch\Model\Layer\Filter\Decimal as AbstractFilter;
 
 /**
  * Layer price filter based on Search API
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Decimal extends AbstractFilter
 {
-    public function getMinMax()
+    /**
+     * Get attribute min max
+     * 
+     * @return array
+     */
+    public function getMinMax(): array
     {
         $min = 0;
         $max = 0;

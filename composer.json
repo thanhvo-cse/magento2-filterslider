@@ -1,10 +1,10 @@
 {
     "name": "thanhvo-cse/magento2-filterslider",
-    "description": "Display filters as sliders",
+    "description": "Magento extension to display filters as sliders",
     "type": "magento2-module",
-    "license": [
-        "OSL-3.0",
-        "AFL-3.0"
+    "license": "MIT",
+    "keywords": [
+        "filter", "search", "slider", "magento"
     ],
     "authors": [
         {
@@ -12,6 +12,7 @@
             "name": "Thanh Vo"
         }
     ],
+    "minimum-stability": "stable",
     "require": {},
     "autoload": {
         "files": [

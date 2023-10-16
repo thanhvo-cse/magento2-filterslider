@@ -10,7 +10,12 @@ use Magento\CatalogSearch\Model\Layer\Filter\Price as AbstractFilter;
  */
 class Price extends AbstractFilter
 {
-    public function getMinMax()
+    /**
+     * Get attribute min max
+     * 
+     * @return array
+     */
+    public function getMinMax(): array
     {
         $min = 0;
         $max = 0;
