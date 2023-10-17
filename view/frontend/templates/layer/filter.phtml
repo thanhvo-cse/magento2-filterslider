@@ -37,10 +37,13 @@ $viewModel = $block->getData('product_layer_view_model');
                         "#thanhvo_number_attribute_<?= $attributeModel->getAttributeCode() ?>": {
                             "ThanhVo_FilterSlider/js/number/slider": {
                                 "attributeCode": "<?= $attributeModel->getAttributeCode() ?>",
+                                "frontendInput": "<?= $attributeModel->getFrontendInput() ?>",
                                 "selectedFrom": <?= $from ?>,
                                 "selectedTo": <?= $to ?>,
-                                "priceMin": <?= $min ?>,
-                                "priceMax": <?= $max ?>,
+                                "min": <?= $min ?>,
+                                "max": <?= $max ?>,
+                                "fromPattern": "<?= $attributeModel->getFilterSliderFromPattern() ?>",
+                                "toPattern": "<?= $attributeModel->getFilterSliderToPattern() ?>",
                                 "priceFormat": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Tax\Helper\Data')->getPriceFormat($block->getStore()); ?>,
                                 "ajaxUrl": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($filterItem->getUrl()) ?>
                             }

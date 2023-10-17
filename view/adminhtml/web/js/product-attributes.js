@@ -16,6 +16,9 @@ define([
                 frontendInput: $('#frontend_input'),
                 isFilterable: $('#is_filterable'),
                 isFilterableInSearch: $('#is_filterable_in_search'),
+                filterAsSlider: $('#filter_as_slider'),
+                filterSliderFromFormat: $('#filter_slider_from_format'),
+                filterSliderToFormat: $('#filter_slider_to_format'),
                 backendType: $('#backend_type'),
                 usedForSortBy: $('#used_for_sort_by'),
                 frontendClass: $('#frontend_class'),
@@ -100,10 +103,16 @@ define([
                         this.isFilterable.selectedIndex = 0;
                         this._disable(this.isFilterable);
                         this._disable(this.isFilterableInSearch);
+                        this._disable(this.filterAsSlider);
+                        this._disable(this.filterSliderFromFormat);
+                        this._disable(this.filterSliderToFormat);
                     } else {
                         // in array
                         this._enable(this.isFilterable);
                         this._enable(this.isFilterableInSearch);
+                        this._enable(this.filterAsSlider);
+                        this._enable(this.filterSliderFromFormat);
+                        this._enable(this.filterSliderToFormat);
                         this.backendType.val('int');
                     }
 

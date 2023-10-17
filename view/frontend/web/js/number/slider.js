@@ -14,8 +14,9 @@ define([
         _create: function () {
             var self = this;
             self.element.find(this.options.sliderElement).slider({
-                min: self.options.priceMin,
-                max: self.options.priceMax,
+                frontendInput: self.options.frontendInput,
+                min: self.options.min,
+                max: self.options.max,
                 values: [self.options.selectedFrom, self.options.selectedTo],
                 slide: function( event, ui ) {
                     self.showText(ui.values[0], ui.values[1]);
@@ -35,7 +36,31 @@ define([
         },
 
         showText: function(from, to){
-            this.element.find(this.options.textElement).html('<span class="price">' + from + '</span> <span class="to">to</span> <span class="price">' + to + '</span>');
+            this.element.find(this.options.textElement).html('<span class="price">' + this.formatNumber(from, this.options.fromPattern) + '</span> <span class="to">to</span> <span class="price">' + this.formatNumber(to, this.options.toPattern) + '</span>');
+        },
+
+        formatNumber: function(value, pattern) {
+            var priceFormat = this.options.priceFormat;
+            if (this.options.frontendInput != "price") {
+                priceFormat.pattern = '%s';
+            }
+
+            if (pattern == "") {
+                return priceUltil.formatPrice(value, priceFormat);
+            }
+
+            var numberPlaceholder = pattern.match(/\%s(\|\d+)?/g);
+            var t = 0;
+            return pattern.replace(/\%s(\|\d+)?/g, function(match) {
+                var individualPriceFormat = { ...priceFormat };
+                var placeholder = numberPlaceholder[t++].split("|");
+                if (placeholder.length > 1) {
+                    individualPriceFormat.precision = placeholder[1];
+                    individualPriceFormat.requiredPrecision = placeholder[1];
+                }
+
+                return priceUltil.formatPrice(value, individualPriceFormat);
+            });
         }
     });
 

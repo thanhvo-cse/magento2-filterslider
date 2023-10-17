@@ -12,12 +12,6 @@ define([
             navigationSelector: '#layered-filter-block'
         },
 
-        _create: function () {
-            // this.initProductListUrl();
-            // this.initObserve();
-            // this.initLoading();
-        },
-
         initProductListUrl: function () {
             var self = this;
             $.mage.productListToolbarForm.prototype.changeUrl = function (paramName, paramValue, defaultValue) {

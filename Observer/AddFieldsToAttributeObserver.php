@@ -36,7 +36,31 @@ class AddFieldsToAttributeObserver implements ObserverInterface
                 'note' => __('Can be used only with catalog input type Price and Number'),
                 'values' => $yesnoSource,
             ],
-            'is_filterable'
+            'is_filterable_in_search'
+        );
+
+        $fieldset->addField(
+            'filter_slider_from_pattern',
+            'text',
+            [
+                'name' => 'filter_slider_from_pattern',
+                'label' => __('Filter slider "from" pattern'),
+                'title' => __('Filter slider "from" pattern'),
+                'note' => __('Example: "Below %s|2" <br/> %s: number <br/> 2: precision'),
+            ],
+            'filter_as_slider'
+        );
+
+        $fieldset->addField(
+            'filter_slider_to_pattern',
+            'text',
+            [
+                'name' => 'filter_slider_to_pattern',
+                'label' => __('Filter slider "to" pattern'),
+                'title' => __('Filter slider "to" pattern'),
+                'note' => __('Example: "Above %s|2" <br/> %s: number <br/> 2: precision'),
+            ],
+            'filter_slider_from_pattern'
         );
     }
 }

@@ -4,5 +4,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="catalog_eav_attribute" resource="default" comment="Catalog EAV Attribute Table">
         <column xsi:type="smallint" name="filter_as_slider" unsigned="true" nullable="true" identity="false" comment="Filter as slider"/>
+        <column xsi:type="mediumtext" name="filter_slider_from_pattern" nullable="true" comment="Filter slider pattern for from"/>
+        <column xsi:type="mediumtext" name="filter_slider_to_pattern" nullable="true" comment="Filter slider pattern for to"/>
     </table>
 </schema>
