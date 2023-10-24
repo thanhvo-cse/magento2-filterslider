@@ -3,6 +3,14 @@
         <plugin name="attributeBackendType" type="ThanhVo\FilterSlider\Plugin\Model\Entity\Attribute" sortOrder="1" disabled="false" />
     </type>
 
+    <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
+        <arguments>
+            <argument name="propertyMappers" xsi:type="array">
+                <item name="catalog_filter" xsi:type="string">ThanhVo\FilterSlider\Model\ResourceModel\Setup\PropertyMapper</item>
+            </argument>
+        </arguments>
+    </type>
+
     <preference for="Magento\CatalogSearch\Model\Layer\Filter\Decimal" type="ThanhVo\FilterSlider\Model\Layer\Filter\Decimal" />
     <preference for="Magento\CatalogSearch\Model\Layer\Filter\Price" type="ThanhVo\FilterSlider\Model\Layer\Filter\Price" />
 </config>
